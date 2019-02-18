@@ -67,3 +67,13 @@ func GetWrapStr() string {
 		return ""
 	}
 }
+
+//检查并删除字符串的最后一个字符
+func CheckAndDeleteLastChar(s string, deleteChar string) string {
+	if strings.HasSuffix(s, deleteChar) {
+		s = s[:len(s)-len(deleteChar)]
+		return CheckAndDeleteLastChar(s, deleteChar)
+	} else {
+		return s
+	}
+}
