@@ -78,12 +78,3 @@ func CheckAndDeleteLastChar(s string, deleteChar string) string {
 		return s
 	}
 }
-
-//获取JSON字符串
-func GetJsonStr(v interface{}) (string, error) {
-	sConfig, err := json.Marshal(v)
-	if err != nil {
-		return "", err
-	}
-	return string(sConfig), nil
-}
