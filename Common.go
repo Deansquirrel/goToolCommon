@@ -2,7 +2,6 @@ package goToolCommon
 
 import (
 	"crypto/md5"
-	"encoding/json"
 	"fmt"
 	"github.com/satori/go.uuid"
 	"math/rand"
