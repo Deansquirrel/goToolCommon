@@ -68,6 +68,16 @@ func GetWrapStr() string {
 	}
 }
 
+//检查并删除字符串的第一个字符
+func CheckAndDeleteFirstChar(s string, deleteChar string) string {
+	if strings.HasPrefix(s, deleteChar) {
+		s = s[len(deleteChar):len(s)]
+		return CheckAndDeleteFirstChar(s, deleteChar)
+	} else {
+		return s
+	}
+}
+
 //检查并删除字符串的最后一个字符
 func CheckAndDeleteLastChar(s string, deleteChar string) string {
 	if strings.HasSuffix(s, deleteChar) {
