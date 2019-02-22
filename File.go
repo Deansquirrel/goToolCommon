@@ -1,6 +1,8 @@
 package goToolCommon
 
 import (
+	"errors"
+	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -11,6 +13,29 @@ import (
 func GetCurrPath() (path string, err error) {
 	path, err = filepath.Abs(filepath.Dir(os.Args[0]))
 	return
+}
+
+//获取指定路径下的文件和文件夹列表
+func GetFolderAndFileList(path string) (folderList []string, fileList []string, err error) {
+	b, err := PathExists(path)
+	if err != nil {
+		return nil, nil, err
+	}
+	if !b {
+		return nil, nil, errors.New("指定的路径[" + path + "]不存在")
+	}
+	fInfoList, err := ioutil.ReadDir(path)
+	if err != nil {
+		return nil, nil, err
+	}
+	for _, fInfo := range fInfoList {
+		if fInfo.IsDir() {
+			folderList = append(folderList, fInfo.Name())
+		} else {
+			fileList = append(fileList, fInfo.Name())
+		}
+	}
+	return folderList, fileList, nil
 }
 
 //检查路径是否存在
