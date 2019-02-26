@@ -1,6 +1,7 @@
 package goToolCommon
 
 import (
+	"encoding/json"
 	"errors"
 	"io/ioutil"
 	"log"
@@ -63,6 +64,16 @@ func CheckAndCreateFolder(path string) error {
 		}
 	}
 	return nil
+}
+
+//获取Json字符串
+func GetJsonStr(v interface{}) (string, error) {
+	str, err := json.Marshal(v)
+	if err != nil {
+		return "", err
+	} else {
+		return string(str), nil
+	}
 }
 
 //记录日志,文件名固定为日期
