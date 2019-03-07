@@ -98,3 +98,26 @@ func ClearBlock(list []string) []string {
 	}
 	return r
 }
+
+//清除字符串数组中的重复项
+func ClearRepeat(list []string) []string {
+	r := make([]string, 0)
+	for _, s := range list {
+		if IsExist(r, s) {
+			continue
+		} else {
+			r = append(r, s)
+		}
+	}
+	return r
+}
+
+//检查字符串列表中是否包含特定的项
+func IsExist(list []string, item string) bool {
+	for _, s := range list {
+		if s == item {
+			return true
+		}
+	}
+	return false
+}
