@@ -87,3 +87,14 @@ func CheckAndDeleteLastChar(s string, deleteChar string) string {
 		return s
 	}
 }
+
+//清除字符串数组中的空白项
+func ClearBlock(list []string) []string {
+	r := make([]string, 0)
+	for _, s := range list {
+		if strings.Trim(s, " ") != "" {
+			r = append(r, s)
+		}
+	}
+	return r
+}
