@@ -121,3 +121,20 @@ func IsExist(list []string, item string) bool {
 	}
 	return false
 }
+
+//比较两个字符串数组
+func CheckDiff(listA []string, listB []string) (onlyA []string, onlyB []string, existAB []string) {
+	for _, s := range listA {
+		if IsExist(listB, s) {
+			existAB = append(existAB, s)
+		} else {
+			onlyA = append(onlyA, s)
+		}
+	}
+	for _, s := range listB {
+		if !IsExist(listA, s) {
+			onlyB = append(onlyB, s)
+		}
+	}
+	return
+}
