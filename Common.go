@@ -6,7 +6,6 @@ import (
 	"github.com/satori/go.uuid"
 	"golang.org/x/text/encoding/simplifiedchinese"
 	"math/rand"
-	"reflect"
 	"runtime"
 	"strconv"
 	"strings"
@@ -190,8 +189,6 @@ func ConvertToString(arg interface{}) string {
 			return string(r)
 		}
 	default:
-		t := reflect.TypeOf(arg)
-		fmt.Println(t.Name())
 		return fmt.Sprint(arg)
 	}
 }
