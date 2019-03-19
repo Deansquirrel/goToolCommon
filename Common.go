@@ -4,8 +4,11 @@ import (
 	"crypto/md5"
 	"fmt"
 	"github.com/satori/go.uuid"
+	"golang.org/x/text/encoding/simplifiedchinese"
 	"math/rand"
+	"reflect"
 	"runtime"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -137,4 +140,58 @@ func CheckDiff(listA []string, listB []string) (onlyA []string, onlyB []string, 
 		}
 	}
 	return
+}
+
+//转换为字符串
+func ConvertToString(arg interface{}) string {
+	switch f := arg.(type) {
+	case time.Time:
+		return GetDateTimeStr(f)
+	case bool:
+		return strconv.FormatBool(f)
+	case float32:
+		return strconv.FormatFloat(float64(f), 'f', -1, 32)
+	case float64:
+		return strconv.FormatFloat(f, 'f', -1, 64)
+	case int:
+		return strconv.FormatInt(int64(f), 10)
+	case int8:
+		return strconv.FormatInt(int64(f), 10)
+	case int16:
+		return strconv.FormatInt(int64(f), 10)
+	case int32:
+		return strconv.FormatInt(int64(f), 10)
+	case int64:
+		return strconv.FormatInt(int64(f), 10)
+	case uint:
+		return strconv.FormatUint(uint64(f), 10)
+	case uint8:
+		return strconv.FormatUint(uint64(f), 10)
+	case uint16:
+		return strconv.FormatUint(uint64(f), 10)
+	case uint32:
+		return strconv.FormatUint(uint64(f), 10)
+	case uint64:
+		return strconv.FormatUint(uint64(f), 10)
+	case uintptr:
+		return strconv.FormatUint(uint64(f), 10)
+	case string:
+		r, err := simplifiedchinese.GB18030.NewDecoder().String(f)
+		if err != nil {
+			return f
+		} else {
+			return r
+		}
+	case []byte:
+		r, err := simplifiedchinese.GB18030.NewDecoder().Bytes(f)
+		if err != nil {
+			return string(f)
+		} else {
+			return string(r)
+		}
+	default:
+		t := reflect.TypeOf(arg)
+		fmt.Println(t.Name())
+		return fmt.Sprint(arg)
+	}
 }
