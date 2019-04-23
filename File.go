@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
@@ -53,6 +54,12 @@ func PathExists(path string) (bool, error) {
 
 //检查路径是否存在,不存在则创建
 func CheckAndCreateFolder(path string) error {
+	count := strings.Count(path, "\\")
+	if count > 1 {
+		lastChar := strings.LastIndex(path, "\\")
+		subPath := path[0:lastChar]
+		return CheckAndCreateFolder(subPath)
+	}
 	b, err := PathExists(path)
 	if err != nil {
 		return err
