@@ -58,7 +58,10 @@ func CheckAndCreateFolder(path string) error {
 	if count > 1 {
 		lastChar := strings.LastIndex(path, "\\")
 		subPath := path[0:lastChar]
-		return CheckAndCreateFolder(subPath)
+		err := CheckAndCreateFolder(subPath)
+		if err != nil {
+			return err
+		}
 	}
 	b, err := PathExists(path)
 	if err != nil {
