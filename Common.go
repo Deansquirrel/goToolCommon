@@ -77,7 +77,7 @@ func GetFolderSplitStr() string {
 	case "linux":
 		return "/"
 	case "darwin":
-		return "\\"
+		return "/"
 	default:
 		return ""
 	}
