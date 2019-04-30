@@ -49,8 +49,7 @@ func Guid() string {
 }
 
 //获取字符串MD5
-func Md5(s string) string {
-	data := []byte(s)
+func Md5(data []byte) string {
 	has := md5.Sum(data)
 	md5Str := fmt.Sprintf("%X", has)
 	return md5Str
