@@ -59,11 +59,25 @@ func Md5(data []byte) string {
 func GetWrapStr() string {
 	switch runtime.GOOS {
 	case "windows":
-		return " \r\n"
+		return "\r\n"
 	case "linux":
 		return "\n"
 	case "darwin":
 		return "\r"
+	default:
+		return "\r\n"
+	}
+}
+
+//获取当前操作系统的路径分割符
+func GetFolderSplitStr() string {
+	switch runtime.GOOS {
+	case "windows":
+		return "\\"
+	case "linux":
+		return "/"
+	case "darwin":
+		return "\\"
 	default:
 		return ""
 	}

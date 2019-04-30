@@ -54,9 +54,9 @@ func PathExists(path string) (bool, error) {
 
 //检查路径是否存在,不存在则创建
 func CheckAndCreateFolder(path string) error {
-	count := strings.Count(path, "\\")
+	count := strings.Count(path, GetFolderSplitStr())
 	if count > 1 {
-		lastChar := strings.LastIndex(path, "\\")
+		lastChar := strings.LastIndex(path, GetFolderSplitStr())
 		subPath := path[0:lastChar]
 		err := CheckAndCreateFolder(subPath)
 		if err != nil {
@@ -92,7 +92,7 @@ func Log(s string) error {
 	if err != nil {
 		dir = ""
 	} else {
-		dir = dir + "\\"
+		dir = dir + GetFolderSplitStr()
 	}
 	fileName := dir + "" + GetDateStr(time.Now()) + ".log"
 	f, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
@@ -113,14 +113,14 @@ func LogFile(s string, fileName string) error {
 	if err != nil {
 		dir = ""
 	} else {
-		dir = dir + "\\"
+		dir = dir + GetFolderSplitStr()
 	}
 	fileName = dir + fileName
 	f, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
 	if err != nil {
 		return err
 	}
-	_, err = f.WriteString(s + "\n")
+	_, err = f.WriteString(s + GetWrapStr())
 	if err != nil {
 		return err
 	}
