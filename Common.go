@@ -1,10 +1,13 @@
 package goToolCommon
 
 import (
+	"bytes"
 	"crypto/md5"
 	"fmt"
 	"github.com/satori/go.uuid"
 	"golang.org/x/text/encoding/simplifiedchinese"
+	"golang.org/x/text/transform"
+	"io/ioutil"
 	"math/rand"
 	"runtime"
 	"strconv"
@@ -204,4 +207,12 @@ func ConvertToString(arg interface{}) string {
 	default:
 		return fmt.Sprint(arg)
 	}
+}
+
+func EncodeGB18030(src []byte) ([]byte, error) {
+	return ioutil.ReadAll(transform.NewReader(bytes.NewReader(src), simplifiedchinese.GB18030.NewEncoder()))
+}
+
+func DecodeGB18030(src []byte) ([]byte, error) {
+	return ioutil.ReadAll(transform.NewReader(bytes.NewReader(src), simplifiedchinese.GB18030.NewDecoder()))
 }
