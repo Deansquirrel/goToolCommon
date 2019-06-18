@@ -10,6 +10,10 @@ func GetDateTimeStr(t time.Time) string {
 	return t.Format("2006-01-02 15:04:05")
 }
 
+func GetDateTimeStrWithMillisecond(t time.Time) string {
+	return t.Format("2006-01-02 15:04:05.000")
+}
+
 func GetMillisecond(t time.Time) int64 {
 	return t.UnixNano() / 1e6
 }
