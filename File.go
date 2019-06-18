@@ -76,6 +76,22 @@ func CheckAndCreateFolder(path string) error {
 	return nil
 }
 
+//获取文件MD5
+func FileMD5(path string) (string, error) {
+	b, err := PathExists(path)
+	if err != nil {
+		return "", err
+	}
+	if !b {
+		return "", errors.New("file is not exists")
+	}
+	fileData, err := ioutil.ReadFile(path)
+	if err != nil {
+		return "", err
+	}
+	return Md5(fileData), nil
+}
+
 //获取Json字符串
 func GetJsonStr(v interface{}) (string, error) {
 	str, err := json.Marshal(v)
