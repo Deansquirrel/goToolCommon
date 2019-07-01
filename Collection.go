@@ -7,6 +7,9 @@ import (
 	"io/ioutil"
 )
 
+//demo
+//sort.Sort(goToolCommon.SortByPinyin(zzList))
+
 type SortByPinyin []string
 
 func (s SortByPinyin) Len() int      { return len(s) }
