@@ -21,3 +21,19 @@ func GetMillisecond(t time.Time) int64 {
 func GetMicrosecond(t time.Time) int64 {
 	return t.UnixNano() / 1e3
 }
+
+func GetDurationBySecond(l int) time.Duration {
+	return time.Duration(1000 * 1000 * 1000 * l)
+}
+
+func GetDurationByMinute(l int) time.Duration {
+	return time.Duration(1000 * 1000 * 1000 * 60 * l)
+}
+
+func GetDurationByHour(l int) time.Duration {
+	return time.Duration(1000 * 1000 * 1000 * 60 * 60 * l)
+}
+
+func GetDurationByDay(l int) time.Duration {
+	return time.Duration(1000 * 1000 * 1000 * 60 * 60 * 24 * l)
+}
