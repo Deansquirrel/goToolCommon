@@ -4,7 +4,16 @@ import (
 	"errors"
 	"os/exec"
 	"runtime"
+	"strconv"
 )
+
+var NetWorkTestAddress string
+var NetWorkTestTimeout int
+
+func init() {
+	NetWorkTestAddress = "www.baidu.com"
+	NetWorkTestTimeout = 30
+}
 
 func NetWorkStatus() bool {
 	switch runtime.GOOS {
@@ -20,7 +29,7 @@ func NetWorkStatus() bool {
 }
 
 func netWorkStatusWindows() bool {
-	cmd := exec.Command("ping", "www.BaiDu.com", "-w", "30", "-n", "1")
+	cmd := exec.Command("ping", NetWorkTestAddress, "-w", strconv.Itoa(NetWorkTestTimeout), "-n", "1")
 	err := cmd.Run()
 	if err != nil {
 		return false
@@ -30,7 +39,7 @@ func netWorkStatusWindows() bool {
 }
 
 func netWorkStatusLinux() bool {
-	cmd := exec.Command("ping", "www.BaiDu.com", "-W", "30", "-c", "1")
+	cmd := exec.Command("ping", NetWorkTestAddress, "-W", strconv.Itoa(NetWorkTestTimeout), "-c", "1")
 	err := cmd.Run()
 	if err != nil {
 		return false
