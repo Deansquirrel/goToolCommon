@@ -23,17 +23,17 @@ func GetMicrosecond(t time.Time) int64 {
 }
 
 func GetDurationBySecond(l int) time.Duration {
-	return time.Duration(1000 * 1000 * 1000 * l)
+	return time.Duration(int64(1000 * 1000 * 1000 * int64(l)))
 }
 
 func GetDurationByMinute(l int) time.Duration {
-	return time.Duration(1000 * 1000 * 1000 * 60 * l)
+	return time.Duration(1000 * 1000 * 1000 * 60 * int64(l))
 }
 
 func GetDurationByHour(l int) time.Duration {
-	return time.Duration(1000 * 1000 * 1000 * 60 * 60 * l)
+	return time.Duration(int64(1000 * 1000 * 1000 * 60 * 60 * int64(l)))
 }
 
 func GetDurationByDay(l int) time.Duration {
-	return time.Duration(1000 * 1000 * 1000 * 60 * 60 * 24 * l)
+	return time.Duration(int64(1000 * 1000 * 1000 * 60 * 60 * 24 * int64(l)))
 }
