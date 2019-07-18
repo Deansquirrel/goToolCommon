@@ -18,6 +18,7 @@ type IObjectManager interface {
 	IsEmpty() bool
 	Length() int
 	GetIdList() []string
+	HasId(id string) bool
 	GetObject(id string) interface{}
 
 	IsClosed() bool
@@ -146,4 +147,13 @@ func (m *objectManager) Close() {
 
 func (m *objectManager) IsClosed() bool {
 	return m.isClosed
+}
+
+func (m *objectManager) HasId(id string) bool {
+	for k := range m.list {
+		if k == id {
+			return true
+		}
+	}
+	return false
 }
