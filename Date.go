@@ -1,6 +1,7 @@
 package goToolCommon
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
@@ -22,15 +23,27 @@ func GetDateTimeStrWithMillisecond(t time.Time) string {
 }
 
 func ParseDateStr(s string) (time.Time, error) {
-	return time.Parse(TimeFormat[0:10], fmt.Sprintf("parse err,reqire format %s", TimeFormat[0:10]))
+	t, err := time.Parse(TimeFormat[0:10], s)
+	if err != nil {
+		return time.Now(), errors.New(fmt.Sprintf("time parse err,require format: %s", TimeFormat[0:10]))
+	}
+	return t, nil
 }
 
 func ParseDateTimeStr(s string) (time.Time, error) {
-	return time.Parse(TimeFormat[0:19], fmt.Sprintf("parse err,reqire format %s", TimeFormat[0:19]))
+	t, err := time.Parse(TimeFormat[0:19], s)
+	if err != nil {
+		return time.Now(), errors.New(fmt.Sprintf("time parse err,require format: %s", TimeFormat[0:19]))
+	}
+	return t, nil
 }
 
 func ParseDateTimeStrWithMillisecond(s string) (time.Time, error) {
-	return time.Parse(TimeFormat[0:23], fmt.Sprintf("parse err,reqire format %s", TimeFormat[0:23]))
+	t, err := time.Parse(TimeFormat[0:23], s)
+	if err != nil {
+		return time.Now(), errors.New(fmt.Sprintf("time parse err,require format: %s", TimeFormat[0:23]))
+	}
+	return t, nil
 }
 
 func GetMillisecond(t time.Time) int64 {
