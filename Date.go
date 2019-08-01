@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	TimeFormat = "2006-01-02 15:04:05.000"
+	TimeFormat = "2006-01-02 15:04:05.999999999"
 )
 
 func GetDateStr(t time.Time) string {
@@ -39,9 +39,9 @@ func ParseDateTimeStr(s string) (time.Time, error) {
 }
 
 func ParseDateTimeStrWithMillisecond(s string) (time.Time, error) {
-	t, err := time.Parse(TimeFormat[0:23], s)
+	t, err := time.Parse(TimeFormat, s)
 	if err != nil {
-		return time.Now(), errors.New(fmt.Sprintf("time parse err,require format: %s", TimeFormat[0:23]))
+		return time.Now(), errors.New(fmt.Sprintf("time parse err,require format: %s", TimeFormat))
 	}
 	return t, nil
 }
