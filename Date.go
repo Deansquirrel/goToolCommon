@@ -54,6 +54,10 @@ func GetMicrosecond(t time.Time) int64 {
 	return t.UnixNano() / 1e3
 }
 
+func GetDurationByMillisecond(l int) time.Duration {
+	return time.Duration(int64(1000 * 1000 * int64(l)))
+}
+
 func GetDurationBySecond(l int) time.Duration {
 	return time.Duration(int64(1000 * 1000 * 1000 * int64(l)))
 }
